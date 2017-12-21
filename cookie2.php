@@ -6,3 +6,5 @@ Cookie:
 硬盘cookie（持久cookie）：保存在硬盘，可以设置过期时间或手工清理
 （3）使用场景：购物车，永久登录；在浏览器的cookie以小文件形式保存在客户端。cookie一般都是在服务器端设置的，可以通过http相应头部返回给浏览器，响应头中：Set-Cookie，浏览器拿到这一信息保存到自己的cookie文件中，每个浏览器都有独立的空间存放cookie
 */
+
+setcookie('bb', 'bb', time()+60, '/');
