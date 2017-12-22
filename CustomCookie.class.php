@@ -63,7 +63,7 @@ class CustomCookie{
      * @param array $options cookie的相关选项
 	*/
 	public function set($name, $value, array $options=[]){
-        if(is_array($options) && count($options)){
+        if(is_array($options) && count($options)>0){
             $this->setOptions($options);
         }
         if(is_array($value) || is_object($value)){
@@ -86,6 +86,21 @@ class CustomCookie{
         }
     }
 
+    /**
+     * 删除指定cookie
+     * @param string $name cookie名称
+     * @param array $options cookie参数
+    */
+    public function delete($name, array $options=[]){
+        if(is_array($options) && count($options)>0){
+            $this->setOptions($options);
+        }
+        if(isset($_COOKIE[$name])){
+            setcookie($name, '', time()-3600, $this->path, $this->domain, $this->secure, $this->httponly);
+            unset($_COOKIE[$name]);
+        }
+    }
+
 }
 
 $cookie = CustomCookie::getInstance();
@@ -95,3 +110,4 @@ $cookie = CustomCookie::getInstance();
 //$cookie->set('cc', 33, array('expire'=>time()+3600));
 $cookie->set('userinfo', array('username'=>'aa','age'=>13 ));
 var_dump($cookie->get('userinfo'));
+$cookie->delete('aa');
