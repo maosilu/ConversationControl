@@ -10,5 +10,5 @@ cookie的缺点：
 （2）读取：localStorage.getItem(key)
 （3）删除指定key：localStorage.removeItem(key)
 （4）全部删除：localStorage.clear()
-（5）获取指定的键名：key(i)（i是下标）
+（5）获取指定的键名：localStorage.key(i)（i是下标，从0开始）
 */
