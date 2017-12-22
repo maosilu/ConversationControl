@@ -90,6 +90,8 @@ class CustomCookie{
 
 $cookie = CustomCookie::getInstance();
 //var_dump($cookie);
-$cookie->set('aa', 111);
-$cookie->set('bb', 222);
-$cookie->set('cc', 33, array('expire'=>time()+3600));
+//$cookie->set('aa', 111);
+//$cookie->set('bb', 222);
+//$cookie->set('cc', 33, array('expire'=>time()+3600));
+$cookie->set('userinfo', array('username'=>'aa','age'=>13 ));
+var_dump($cookie->get('userinfo'));
