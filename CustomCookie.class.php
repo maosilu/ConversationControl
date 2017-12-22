@@ -101,6 +101,22 @@ class CustomCookie{
         }
     }
 
+    /**
+     * 删除所有cookie
+     * @param array $options cookie参数
+    */
+    public function deleteAll(array $options=[]){
+        if(is_array($options) && count($options)>0){
+            $this->setOptions($options);
+        }
+        if(!empty($_COOKIE)){
+            foreach($_COOKIE as $name=>$value){
+                setcookie($name, '', time()-3600, $this->path, $this->domain, $this->secure, $this->httponly);
+                unset($_COOKIE);
+            }
+        }
+    }
+
 }
 
 $cookie = CustomCookie::getInstance();
@@ -111,3 +127,4 @@ $cookie = CustomCookie::getInstance();
 $cookie->set('userinfo', array('username'=>'aa','age'=>13 ));
 var_dump($cookie->get('userinfo'));
 $cookie->delete('aa');
+$cookie->deleteAll();
