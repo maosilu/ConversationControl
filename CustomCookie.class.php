@@ -56,4 +56,21 @@ class CustomCookie{
 		return self::$_instance;
 	}
 
+	/**
+     * 设置cookie
+     * @param string $name Cookie名称
+     * @param mixed $value cookie的值
+     * @param array $options cookie的相关选项
+	*/
+	public function set($name, $value, array $options=[]){
+        if(is_array($options) && count($options)){
+            $this->setOptions($options);
+        }
+        if(is_array($value) || is_object($value)){
+            $value = json_encode($value);
+        }
+
+        setcookie($name, $value, $this->expire, $this->path, $this->domain, $this->secure, $this->httponly);
+    }
+
 }
