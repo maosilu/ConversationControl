@@ -67,10 +67,29 @@ class CustomCookie{
             $this->setOptions($options);
         }
         if(is_array($value) || is_object($value)){
-            $value = json_encode($value);
+            $value = json_encode($value, JSON_FORCE_OBJECT);
         }
 
         setcookie($name, $value, $this->expire, $this->path, $this->domain, $this->secure, $this->httponly);
     }
 
+    /**
+     * 得到指定Cookie值
+     * @param string $name Cookie的名称
+     * @return mixed       返回null或者对象或者标量
+    */
+    public function get($name){
+	    if($_COOKIE[$name]){
+	        return substr($_COOKIE[$name], 0, 1) == '{' ? json_decode($_COOKIE[$name]) : $_COOKIE[$name];
+        }else{
+	        return null;
+        }
+    }
+
 }
+
+$cookie = CustomCookie::getInstance();
+//var_dump($cookie);
+$cookie->set('aa', 111);
+$cookie->set('bb', 222);
+$cookie->set('cc', 33, array('expire'=>time()+3600));
