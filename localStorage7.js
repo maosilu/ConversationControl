@@ -17,12 +17,12 @@ localStorage能够存储文本数据也能存储字符串，遇到对象的要�
 		return val;
 	}
 };*/
-var custom_localStorage = {
+var custom_localStorage={
 	//添加缓存时间：
-	set: function(key, val, days){
+	set: function(key, value, days){
 		var item = {
 			data:value,
-			endTime:new Date().getTime().+days*24*3600*1000
+			endTime:new Date().getTime()+days*24*3600*1000
 		};
 		localStorage.setItem(key, JSON.stringify(item));
 	},
