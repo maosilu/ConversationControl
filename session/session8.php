@@ -8,3 +8,10 @@ session的工作原理：
 （5）每次浏览器访问服务器都可以凭借自己的session_id到服务器的这个变量中认领自己的信息
 （6）如果想销毁会话，可以删除掉会话中的数据，销毁会话文件
 */
+session_start();
+$_SESSION['username'] = 'ice';
+$_SESSION['email'] = '123243@qq.com';
+$_SESSION['age'] = 26;
+
+echo 'session的名字：'.session_name()."<br/>";
+echo 'session的ID：'.session_id();
