@@ -15,3 +15,6 @@ $_SESSION['age'] = 26;
 
 echo 'session的名字：'.session_name()."<br/>";
 echo 'session的ID：'.session_id();
+
+//setcookie设置session的生存周期
+setcookie(session_name(), session_id(), time()+3600);
